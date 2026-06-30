@@ -39,8 +39,10 @@ def init_phonebook_db():
 
 # This function is to find my results that has "keyword" into database
 def find_persons(keyword):
-    query = f"""
-    SELECT * FROM phonebook WHERE name like '%{keyword.strip().lower()}%';
+def find_persons(keyword):
+    safe_keyword = f"%{keyword.strip().lower()}%"
+    query = "SELECT * FROM phonebook WHERE name LIKE ?"
+    cursor.execute(query, (safe_keyword,))    SELECT * FROM phonebook WHERE name like '%{keyword.strip().lower()}%';
     """
     cursor.execute(query)
     result = cursor.fetchall() 
