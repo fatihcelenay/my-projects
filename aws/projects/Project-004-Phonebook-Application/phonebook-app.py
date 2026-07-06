@@ -42,6 +42,8 @@ def find_persons(keyword):
 def find_persons(keyword):
     safe_keyword = f"%{keyword.strip().lower()}%"
     query = "SELECT * FROM phonebook WHERE name LIKE ?"
+    cursor.execute(query, (safe_keyword,))    safe_keyword = f"%{keyword.strip().lower()}%"
+    query = "SELECT * FROM phonebook WHERE name LIKE ?"
     cursor.execute(query, (safe_keyword,))    SELECT * FROM phonebook WHERE name like '%{keyword.strip().lower()}%';
     """
     cursor.execute(query)
