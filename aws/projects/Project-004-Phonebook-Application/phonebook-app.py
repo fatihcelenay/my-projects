@@ -92,8 +92,10 @@ def update_person(name, number):
 
 
 # Write a function named `delete_person` which deletes person record from the phonebook table in the db,
-# and returns returns text info about result of the operation
 def delete_person(name):
+    sanitized_name = name.strip().lower()
+    query = "SELECT * FROM phonebook WHERE name LIKE %s"
+    cursor.execute(query, (sanitized_name,))def delete_person(name):
     query = f"""
     SELECT * FROM phonebook WHERE name like '{name.strip().lower()}';
     """
